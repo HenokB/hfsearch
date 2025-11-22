@@ -14,4 +14,3 @@ __all__ = [
     "export_to_txt",
     "__version__",
 ]
-

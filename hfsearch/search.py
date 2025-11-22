@@ -9,18 +9,18 @@ def search_models(
     limit: int = 10,
     author: Optional[str] = None,
     tags: Optional[List[str]] = None,
-    task: Optional[str] = None
+    task: Optional[str] = None,
 ) -> List[dict]:
     """
     Search for models on Hugging Face Hub.
-    
+
     Args:
         query: Search query/keywords
         limit: Maximum number of results to return (default: 10)
         author: Filter by author/organization
         tags: Filter by tags (list of strings)
         task: Filter by task (e.g., text-classification, translation, etc.)
-    
+
     Returns:
         List of dictionaries containing model information with keys:
         - id: Model ID
@@ -28,7 +28,7 @@ def search_models(
         - downloads: Number of downloads
         - likes: Number of likes
         - tags: List of tags
-    
+
     Example:
         >>> from hfsearch import search_models
         >>> results = search_models(query="bert", limit=5)
@@ -36,7 +36,7 @@ def search_models(
         'bert-base-uncased'
     """
     api = HfApi()
-    
+
     try:
         kwargs = {"limit": limit}
         if query:
@@ -46,10 +46,10 @@ def search_models(
         if tags:
             kwargs["tags"] = tags
         if task:
-            kwargs["pipeline_tag"] = task  
-        
+            kwargs["pipeline_tag"] = task
+
         results = api.list_models(**kwargs)
-        
+
         model_list = []
         for model in results:
             model_dict = {
@@ -60,7 +60,7 @@ def search_models(
                 "tags": getattr(model, "tags", []),
             }
             model_list.append(model_dict)
-        
+
         return model_list
     except Exception as e:
         raise RuntimeError(f"Error searching models: {e}") from e
@@ -70,17 +70,17 @@ def search_datasets(
     query: Optional[str] = None,
     limit: int = 10,
     author: Optional[str] = None,
-    tags: Optional[List[str]] = None
+    tags: Optional[List[str]] = None,
 ) -> List[dict]:
     """
     Search for datasets on Hugging Face Hub.
-    
+
     Args:
         query: Search query/keywords
         limit: Maximum number of results to return (default: 10)
         author: Filter by author/organization
         tags: Filter by tags (list of strings)
-    
+
     Returns:
         List of dictionaries containing dataset information with keys:
         - id: Dataset ID
@@ -88,7 +88,7 @@ def search_datasets(
         - downloads: Number of downloads
         - likes: Number of likes
         - tags: List of tags
-    
+
     Example:
         >>> from hfsearch import search_datasets
         >>> results = search_datasets(query="sentiment", limit=5)
@@ -96,7 +96,7 @@ def search_datasets(
         'sentiment140'
     """
     api = HfApi()
-    
+
     try:
         kwargs = {"limit": limit}
         if query:
@@ -105,9 +105,9 @@ def search_datasets(
             kwargs["author"] = author
         if tags:
             kwargs["tags"] = tags
-        
+
         results = api.list_datasets(**kwargs)
-        
+
         dataset_list = []
         for dataset in results:
             dataset_dict = {
@@ -118,8 +118,7 @@ def search_datasets(
                 "tags": getattr(dataset, "tags", []),
             }
             dataset_list.append(dataset_dict)
-        
+
         return dataset_list
     except Exception as e:
         raise RuntimeError(f"Error searching datasets: {e}") from e
-
