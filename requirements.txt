@@ -1,0 +1,5 @@
+huggingface_hub>=0.20.0
+rich>=13.0.0
+
+
+
