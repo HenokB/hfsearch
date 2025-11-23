@@ -44,7 +44,7 @@ def search_models(
         if author:
             kwargs["author"] = author
         if tags:
-            kwargs["tags"] = tags
+            kwargs["filter"] = tags
         if task:
             kwargs["pipeline_tag"] = task
 
@@ -52,9 +52,17 @@ def search_models(
 
         model_list = []
         for model in results:
+            model_id = getattr(model, "id", "N/A")
+            # Extract author from model ID (format: "author/model-name")
+            model_author = (
+                model_id.split("/")[0]
+                if "/" in model_id
+                else (getattr(model, "author", None) or "N/A")
+            )
+
             model_dict = {
-                "id": getattr(model, "id", "N/A"),
-                "author": getattr(model, "author", "N/A"),
+                "id": model_id,
+                "author": model_author,
                 "downloads": getattr(model, "downloads", 0),
                 "likes": getattr(model, "likes", 0),
                 "tags": getattr(model, "tags", []),
@@ -104,15 +112,23 @@ def search_datasets(
         if author:
             kwargs["author"] = author
         if tags:
-            kwargs["tags"] = tags
+            kwargs["filter"] = tags
 
         results = api.list_datasets(**kwargs)
 
         dataset_list = []
         for dataset in results:
+            dataset_id = getattr(dataset, "id", "N/A")
+            # Extract author from dataset ID (format: "author/dataset-name")
+            dataset_author = (
+                dataset_id.split("/")[0]
+                if "/" in dataset_id
+                else (getattr(dataset, "author", None) or "N/A")
+            )
+
             dataset_dict = {
-                "id": getattr(dataset, "id", "N/A"),
-                "author": getattr(dataset, "author", "N/A"),
+                "id": dataset_id,
+                "author": dataset_author,
                 "downloads": getattr(dataset, "downloads", 0),
                 "likes": getattr(dataset, "likes", 0),
                 "tags": getattr(dataset, "tags", []),
