@@ -1,6 +1,10 @@
 # hfsearch
 
+[![PyPI version](https://badge.fury.io/py/hfsearch.svg)](https://badge.fury.io/py/hfsearch)
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/hfsearch?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=RED&left_text=downloads)](https://pepy.tech/projects/hfsearch)
+[![GitHub stars](https://img.shields.io/github/stars/HenokB/hfsearch?style=social)](https://github.com/HenokB/hfsearch)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 A Python library and CLI tool to search for models and datasets on the [Hugging Face Hub](https://huggingface.co/).
 
