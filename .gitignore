@@ -41,7 +41,7 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# PyPI credentials (never commit these!)
+# PyPI credentials
 .pypirc
 */.pypirc
 
