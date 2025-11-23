@@ -1,5 +1,7 @@
 # hfsearch
 
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/hfsearch?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=RED&left_text=downloads)](https://pepy.tech/projects/hfsearch)
+
 A Python library and CLI tool to search for models and datasets on the [Hugging Face Hub](https://huggingface.co/).
 
 ## Installation
